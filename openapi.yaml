@@ -20901,10 +20901,12 @@ paths:
           description: Successful operation
           headers: {}
           content:
-            text/plain:
+            application/json:
               schema:
-                type: object
+                type: array
                 description: Successful operation
+                items:
+                  $ref: '#/components/schemas/Network'
                 example: >-
                   [
 
@@ -21774,10 +21776,11 @@ paths:
           description: Successful operation
           headers: {}
           content:
-            text/plain:
+            application/json:
               schema:
-                type: object
-                description: Successful operation
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
                 example: >-
                   [
 
@@ -25004,9 +25007,14 @@ paths:
           description: Successful operation
           headers: {}
           content:
-            text/plain:
+            application/json:
               schema:
                 type: object
+                properties:
+                  profiles:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SmProfile'
                 description: Successful operation
                 example: >-
                   {
@@ -25934,9 +25942,11 @@ paths:
           description: Successful operation
           headers: {}
           content:
-            text/plain:
+            application/json:
               schema:
-                type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/SmUser'
                 description: Successful operation
                 example: >-
                   [
@@ -26792,9 +26802,11 @@ paths:
           description: Successful operation
           headers: {}
           content:
-            text/plain:
+            application/json:
               schema:
-                type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/SmConnectivity'
                 description: Successful operation
                 example: >-
                   [
@@ -27258,9 +27270,14 @@ paths:
           description: Successful operation
           headers: {}
           content:
-            text/plain:
+            application/json:
               schema:
                 type: object
+                properties:
+                  devices:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SmDevice'
                 description: Successful operation
                 example: >-
                   {
@@ -38295,6 +38312,133 @@ paths:
       deprecated: false
 components:
   schemas:
+    Organization:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+    Network:
+      type: object
+      properties:
+        id:
+          type: string
+        organizationId:
+          type: string
+        name:
+          type: string
+        timeZone:
+          type: string
+        tags:
+          type: string
+          nullable: true
+        type:
+          type: string
+        productTypes:
+          type: array
+          items:
+            type: string
+        disableMyMerakiCom:
+          type: boolean
+        enrollmentString:
+          type: string
+          nullable: true
+    SmUser:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        fullName:
+          type: string
+        username:
+          type: string
+        hasPassword:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+        adGroups:
+          type: array
+          items:
+            type: string
+        asmGroups:
+          type: array
+          items:
+            type: array
+        isExternal:
+          type: boolean
+        sspEnabled:
+          type: boolean
+        displayName:
+          type: string
+        hasIdentityCertificate:
+          type: boolean
+        userThumbnail:
+          type: string
+          nullable: true
+    SmProfile:
+      type: object
+      properties:
+        id:
+          type: string
+        payload_display_name:
+          type: string
+        payload_identifier:
+          type: string
+        payload_description:
+          type: string
+        scope:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        wifis:
+          type: array
+          items:
+            type: string
+        payload_types:
+          type: array
+          items:
+            type: string
+    SmDevice:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        ssid:
+          type: string
+        wifiMac:
+          type: string
+        osName:
+          type: string
+        systemModel:
+          type: string
+        uuid:
+          type: string
+        serialNumber:
+          type: string
+        hasChromeMdm:
+          type: boolean
+    SmConnectivity:
+      type: object
+      properties:
+        firstSeenAt:
+          type: float
+        lastSeenAt:
+          type: float
     FixedIpAssignment:
       title: FixedIpAssignment
       required:
@@ -41741,7 +41885,7 @@ components:
         networks:
           type: array
           items:
-            $ref: '#/components/schemas/Network'
+            $ref: '#/components/schemas/NetworkAccess'
           description: The list of networks that the dashboard administrator has privileges on
       example:
         name: Miles Meraki
@@ -42212,7 +42356,7 @@ components:
         networks:
           type: array
           items:
-            $ref: '#/components/schemas/Network'
+            $ref: '#/components/schemas/NetworkAccess'
           description: The list of networks that the dashboard administrator has privileges on
       example:
         name: Miles Meraki
@@ -44060,7 +44204,7 @@ components:
         access:
           type: string
           description: The privilege of the dashboard administrator on the tag
-    Network:
+    NetworkAccess:
       title: Network
       required:
       - id
