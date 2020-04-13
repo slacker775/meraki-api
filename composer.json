@@ -1,0 +1,20 @@
+{
+	"autoload" : {
+		"psr-4" : {
+			"Meraki\\Api\\" : "generated/",
+		        "Meraki\\" : "src/"
+		}
+	},
+	"name" : "slacker775/meraki-api",
+	"type" : "library",
+	"license" : "MIT",
+	"require" : {
+		"php" : ">=7.4",
+		"jane-php/jane-php" : "~5.3"
+	},
+	"require-dev": {
+		"symfony/var-dumper": "^5.0",
+		"symfony/http-client": "^5.0",
+		"nyholm/psr7": "^1.2"
+	}
+}
