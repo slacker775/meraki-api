@@ -26792,9 +26792,11 @@ paths:
           description: Successful operation
           headers: {}
           content:
-            text/plain:
+            application/json:
               schema:
-                type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/SmDeviceSoftwares'
                 description: Successful operation
                 example: >-
                   [
@@ -38676,6 +38678,75 @@ components:
         created_at:
           type: string
           format: date-time
+    SmDeviceSoftwares:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        vendor:
+          type: string
+          nullable: true
+        shortVersion:
+          type: string
+          nullable: true
+        version:
+          type: string
+          nullable: true
+        appId:
+          type: string
+        bundleSize:
+          type: integer
+          nullable: true
+        deviceId:
+          type: string
+        dynamicSize:
+          type: integer
+          nullable: true
+        identifier:
+          type: string
+        isManaged:
+          type: boolean
+          nullable: true
+        itunesId:
+          type: string
+          nullable: true
+        licenseKey:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        iosRedemptionCode:
+          type: string
+          nullable: true
+        redemptionCode:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        toInstall:
+          type: string
+          nullable: true
+        toUninstall:
+          type: string
+          nullable: true
+        installedAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        uninstalledAt:
+          type: string
+          format: date-time
+          nullable: true
     updateDeviceCellularGatewaySettingsPortForwardingRules:
       title: updateDeviceCellularGatewaySettingsPortForwardingRules
       type: object

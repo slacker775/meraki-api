@@ -14,6 +14,7 @@ use Meraki\Api\Model\SmSecurityCenter;
 use Meraki\Api\Model\NetworksNetworkIdSmDevicesGetResponse200;
 use Meraki\Api\Model\NetworksNetworkIdSmProfilesGetResponse200;
 use Meraki\Api\Model\SmDeviceCert;
+use Meraki\Api\Model\SmDeviceSoftwares;
 
 class DashboardApiTest extends TestCase
 {
@@ -102,5 +103,15 @@ class DashboardApiTest extends TestCase
         
         self::assertNotNull($response);
         self::assertInstanceOf(SmDeviceCert::class, $response[0]);
+    }
+    
+    public function testListSmDeviceSoftwaresSuccess()
+    {
+        $client = $this->getClient();
+        
+        $response = $client->getNetworkSmSoftwares($_SERVER['NETWORK_ID'], $_SERVER['SM_DEVICE_ID']);
+        
+        self::assertNotNull($response);
+        self::assertInstanceOf(SmDeviceSoftwares::class, $response[0]);
     }
 }
