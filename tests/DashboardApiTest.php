@@ -15,6 +15,8 @@ use Meraki\Api\Model\NetworksNetworkIdSmDevicesGetResponse200;
 use Meraki\Api\Model\NetworksNetworkIdSmProfilesGetResponse200;
 use Meraki\Api\Model\SmDeviceCert;
 use Meraki\Api\Model\SmDeviceSoftwares;
+use Meraki\Api\Model\SmDeviceCommandLog;
+use Meraki\Api\Model\SmDeviceProfile;
 
 class DashboardApiTest extends TestCase
 {
@@ -113,5 +115,25 @@ class DashboardApiTest extends TestCase
         
         self::assertNotNull($response);
         self::assertInstanceOf(SmDeviceSoftwares::class, $response[0]);
+    }
+    
+    public function testListSmDeviceCommandLogSuccess()
+    {
+        $client = $this->getClient();
+        
+        $response = $client->getNetworkSmDeviceCommandLogs($_SERVER['NETWORK_ID'], $_SERVER['SM_DEVICE_ID'], ['perPage' => 5]);
+        
+        self::assertNotEmpty($response);
+        self::assertInstanceOf(SmDeviceCommandLog::class, $response[0]);
+    }
+    
+    public function testListSmDeviceProfilesSuccess()
+    {
+        $client = $this->getClient();
+        
+        $response = $client->getNetworkSmDeviceProfiles($_SERVER['NETWORK_ID'], $_SERVER['SM_DEVICE_ID']);
+        
+        self::assertNotEmpty($response);
+        self::assertInstanceOf(SmDeviceProfile::class, $response[0]);
     }
 }

@@ -25673,9 +25673,11 @@ paths:
           description: Successful operation
           headers: {}
           content:
-            text/plain:
+            application/json:
               schema:
-                type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/SmDeviceProfile'
                 description: Successful operation
                 example: >-
                   [
@@ -26596,9 +26598,11 @@ paths:
           description: Successful operation
           headers: {}
           content:
-            text/plain:
+            application/json:
               schema:
-                type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/SmDeviceCommandLog'
                 description: Successful operation
                 example: >-
                   [
@@ -38746,6 +38750,41 @@ components:
         uninstalledAt:
           type: string
           format: date-time
+          nullable: true
+    SmDeviceCommandLog:
+      type: object
+      properties:
+        ts:
+          type: number
+        action:
+          type: string
+        name:
+          type: string
+        details:
+          type: string
+        dashboardUser:
+          type: string
+          nullable: true
+    SmDeviceProfile:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        profileIdentifier:
+          type: string
+        version:
+          type: integer
+          nullable: true
+        deviceId:
+          type: string
+        isEncrypted:
+          type: boolean
+        isManaged:
+          type: boolean
+        profileData:
+          type: string
           nullable: true
     updateDeviceCellularGatewaySettingsPortForwardingRules:
       title: updateDeviceCellularGatewaySettingsPortForwardingRules
