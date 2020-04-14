@@ -18,7 +18,11 @@ use Meraki\Api\Model\SmDeviceSoftwares;
 use Meraki\Api\Model\SmDeviceCommandLog;
 use Meraki\Api\Model\SmDeviceProfile;
 
-class DashboardApiTest extends TestCase
+/**
+ * Perform functional tests of System Manager API methods
+ *
+ */
+class SystemManagerApiTest extends TestCase
 {
     private function getClient(): Client
     {
