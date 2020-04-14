@@ -26313,7 +26313,7 @@ paths:
           description: Successful operation
           headers: {}
           content:
-            text/plain:
+            application/json:
               schema:
                 type: object
                 properties:
