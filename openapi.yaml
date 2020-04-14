@@ -25395,9 +25395,11 @@ paths:
           description: Successful operation
           headers: {}
           content:
-            text/plain:
+            application/json:
               schema:
-                type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/SmDeviceCert'
                 description: Successful operation
                 example: >-
                   [
@@ -25473,9 +25475,11 @@ paths:
           description: Successful operation
           headers: {}
           content:
-            text/plain:
+            application/json:
               schema:
-                type: object
+                type: array
+                items:
+                  $ref: '#/components/schemas/SmDeviceWlanLists'
                 description: Successful operation
                 example: >-
                   [
@@ -38643,6 +38647,35 @@ components:
         runningProcs:
           type: string
           nullable: true
+    SmDeviceCert:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        deviceId:
+          type: string
+        issuer:
+          type: string
+        subject:
+          type: string
+        notValidAfter:
+          type: string
+        notValidBefore:
+          type: string
+        certPem:
+          type: string
+    SmDeviceWlanLists:
+      type: object
+      properties:
+        id:
+          type: string
+        xml:
+          type: string
+        created_at:
+          type: string
+          format: date-time
     updateDeviceCellularGatewaySettingsPortForwardingRules:
       title: updateDeviceCellularGatewaySettingsPortForwardingRules
       type: object
